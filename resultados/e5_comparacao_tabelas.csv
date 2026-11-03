@@ -1,0 +1,3 @@
+configuracao,prob_premio_teorica_pct,freq_premio_obs_pct,premio_medio_teorico,premio_medio_obs,lucro_medio_teorico,lucro_medio_obs,rtp_teorico_pct,rtp_obs_pct,dp_teorico_x,dp_obs_x
+Tabela Base,4.0,4.12,0.8400000000000001,0.8685,-0.15999999999999992,-0.1315,84.00000000000001,86.85000000000001,5.2052281410136105,5.275034630126602
+Prêmios +10%,4.0,4.12,0.924,0.95535,-0.07599999999999996,-0.04465,92.4,95.535,5.725750955114971,5.802538093139263

@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Máquina Estatística — Educação Científica e Simulador Acessível (IFES)</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-alt: #f1f5f9;
+      --text: #0f172a;
+      --text-muted: #334155;
+      --border: #475569;
+      --primary: #005a9c;
+      --primary-fg: #ffffff;
+      --accent-win: #007a5a;
+      --accent-loss: #b91c1c;
+      --focus-ring: #d97706;
+    }
+
+    body.alto-contraste {
+      --bg: #000000;
+      --surface: #0a0a0a;
+      --surface-alt: #171717;
+      --text: #ffffff;
+      --text-muted: #e5e5e5;
+      --border: #ffff00;
+      --primary: #ffff00;
+      --primary-fg: #000000;
+      --accent-win: #00ff99;
+      --accent-loss: #ff6666;
+      --focus-ring: #00ffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: underline;
+      font-weight: 600;
+    }
+
+    *:focus-visible {
+      outline: 3px solid var(--focus-ring);
+      outline-offset: 3px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      background: var(--primary);
+      color: var(--primary-fg);
+      padding: 0.75rem 1.25rem;
+      z-index: 1000;
+      font-weight: 700;
+    }
+
+    .skip-link:focus {
+      left: 1rem;
+      top: 1rem;
+    }
+
+    header {
+      background: var(--surface);
+      border-bottom: 3px solid var(--border);
+      padding: 1.25rem 1.5rem;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 1.25rem;
+    }
+
+    .banner-academico {
+      background: var(--primary);
+      color: var(--primary-fg);
+      padding: 0.65rem 1rem;
+      border-radius: 6px;
+      font-weight: 700;
+      text-align: center;
+      letter-spacing: 0.02em;
+      margin-bottom: 1rem;
+      border: 2px solid var(--border);
+    }
+
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.65rem;
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0.35rem;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      background: var(--primary);
+      color: var(--primary-fg);
+      border: 2px solid var(--border);
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn-sec {
+      background: var(--surface-alt);
+      color: var(--text);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+    }
+
+    .tabuleiro {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      margin: 1rem 0;
+      background: var(--surface-alt);
+      padding: 0.75rem;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .celula {
+      background: var(--surface);
+      border: 2px dashed var(--border);
+      border-radius: 6px;
+      padding: 0.65rem 0.4rem;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .celula.central {
+      border: 3px solid var(--primary);
+      background: var(--surface);
+      box-shadow: inset 0 0 0 2px var(--focus-ring);
+    }
+
+    .simbolo-icone {
+      font-size: 1.4rem;
+      display: block;
+    }
+
+    .simbolo-nome {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      display: block;
+    }
+
+    .status-box {
+      padding: 0.85rem;
+      border: 2px solid var(--border);
+      border-radius: 6px;
+      background: var(--surface-alt);
+      font-weight: 600;
+      margin-top: 0.75rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.93rem;
+    }
+
+    th, td {
+      border: 1.5px solid var(--border);
+      padding: 0.55rem 0.65rem;
+      text-align: left;
+    }
+
+    th {
+      background: var(--surface-alt);
+      font-weight: 700;
+    }
+
+    kbd {
+      background: var(--surface-alt);
+      border: 1.5px solid var(--border);
+      border-radius: 4px;
+      padding: 0.1rem 0.4rem;
+      font-family: monospace;
+      font-weight: 700;
+    }
+
+    .destaque-numero {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+  <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal</a>
+
+  <header role="banner">
+    <div class="container">
+      <div class="banner-academico" role="note" aria-label="Aviso obrigatório">
+        Simulador acadêmico - somente créditos fictícios
+      </div>
+      <div class="top-bar">
+        <div>
+          <h1>Máquina Estatística: Por que ganhos ocasionais coexistem com perda esperada?</h1>
+          <p style="margin: 0.25rem 0 0; color: var(--text-muted);">
+            Guia de Educação Científica (leitura de 3 min) e Simulador Acessível — IFES Campus Serra (Probabilidade e Estatística I)
+          </p>
+        </div>
+        <div>
+          <button id="btn-contraste" class="btn btn-sec" type="button" aria-pressed="false" onclick="alternarContraste()">
+            Alto Contraste (Atalho: <kbd>Alt</kbd>+<kbd>C</kbd>)
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo-principal" class="container" role="main">
+    <section aria-labelledby="sec-simulador">
+      <h2 id="sec-simulador">1. Simulador Interativo Acessível (Teclado + Leitor de Tela + Formas Geométricas)</h2>
+      <p>
+        Esta interface não depende apenas de cores: cada um dos 5 símbolos do rolo circular
+        <code>R = (A, B, C, D, E)</code> possui <strong>forma geométrica distinta</strong>,
+        <strong>letra identificadora</strong> e <strong>rótulo descritivo</strong>.
+        Apenas a <strong>linha central destacada</strong> gera pagamento quando seus três símbolos são idênticos.
+        Atalhos de teclado: <kbd>Espaço</kbd> ou <kbd>Enter</kbd> no botão para girar 1 rodada;
+        <kbd>Alt</kbd>+<kbd>1</kbd> (1 rodada), <kbd>Alt</kbd>+<kbd>2</kbd> (10 rodadas), <kbd>Alt</kbd>+<kbd>R</kbd> (reiniciar).
+      </p>
+
+      <div class="grid-2">
+        <div class="card" aria-label="Painel do Tabuleiro 3 por 3">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+            <strong>Tabuleiro 3 × 3 (Aposta fixa: 1 crédito fictício)</strong>
+            <label for="sel-tabela">
+              Tabela:
+              <select id="sel-tabela" onchange="atualizarTabela()" style="padding:0.3rem; font-weight:600;">
+                <option value="base">Tabela Base (RTP = 84,0% | E[X] = -0,16)</option>
+                <option value="mais10">Prêmios +10% (RTP = 92,4% | E[X] = -0,076)</option>
+                <option value="baixa">Baixa Volatilidade: 21 fixo (RTP = 84,0%)</option>
+                <option value="alta">Alta Volatilidade: 2 a 85 (RTP = 84,0%)</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="tabuleiro" role="grid" aria-label="Janela visível dos 3 rolos">
+            <div class="celula" id="cel-0-0" role="gridcell" aria-label="Topo Rolo 1">● A<span class="simbolo-nome">Topo Rolo 1</span></div>
+            <div class="celula" id="cel-0-1" role="gridcell" aria-label="Topo Rolo 2">■ C<span class="simbolo-nome">Topo Rolo 2</span></div>
+            <div class="celula" id="cel-0-2" role="gridcell" aria-label="Topo Rolo 3">★ E<span class="simbolo-nome">Topo Rolo 3</span></div>
+
+            <div class="celula central" id="cel-1-0" role="gridcell" aria-label="Centro Rolo 1 (Avaliada)">▲ B<span class="simbolo-nome">CENTRO Rolo 1</span></div>
+            <div class="celula central" id="cel-1-1" role="gridcell" aria-label="Centro Rolo 2 (Avaliada)">◆ D<span class="simbolo-nome">CENTRO Rolo 2</span></div>
+            <div class="celula central" id="cel-1-2" role="gridcell" aria-label="Centro Rolo 3 (Avaliada)">● A<span class="simbolo-nome">CENTRO Rolo 3</span></div>
+
+            <div class="celula" id="cel-2-0" role="gridcell" aria-label="Base Rolo 1">■ C<span class="simbolo-nome">Base Rolo 1</span></div>
+            <div class="celula" id="cel-2-1" role="gridcell" aria-label="Base Rolo 2">★ E<span class="simbolo-nome">Base Rolo 2</span></div>
+            <div class="celula" id="cel-2-2" role="gridcell" aria-label="Base Rolo 3">▲ B<span class="simbolo-nome">Base Rolo 3</span></div>
+          </div>
+
+          <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+            <button class="btn" type="button" onclick="girarRodadas(1)" accesskey="1">Girar 1 Rodada (Alt+1)</button>
+            <button class="btn btn-sec" type="button" onclick="girarRodadas(10)" accesskey="2">Girar 10 Rodadas (Alt+2)</button>
+            <button class="btn btn-sec" type="button" onclick="girarRodadas(100)">Girar 100 Rodadas</button>
+            <button class="btn btn-sec" type="button" onclick="reiniciarSessao()" accesskey="r">Reiniciar (Alt+R)</button>
+          </div>
+
+          <div id="status-rodada" class="status-box" role="status" aria-live="polite">
+            Rodada inicial (Figura 2 do enunciado, paradas K = 0, 2, 4): Linha central B - D - A | Sem prêmio (P = 0, Lucro X = -1 crédito).
+          </div>
+        </div>
+
+        <div class="card" aria-label="Estatísticas acumuladas da sessão">
+          <strong>Estatísticas Acumuladas da Sua Sessão Virtual</strong>
+          <table>
+            <tbody>
+              <tr>
+                <th>Saldo Fictício Atual (Inicial = 100)</th>
+                <td><span id="stat-saldo" class="destaque-numero">100,00</span> créditos</td>
+              </tr>
+              <tr>
+                <th>Rodadas Realizadas (n)</th>
+                <td id="stat-n">0</td>
+              </tr>
+              <tr>
+                <th>Rodadas Premiadas Observadas</th>
+                <td><span id="stat-premios">0</span> (<span id="stat-freq-premio">0,00%</span> vs <strong>4,00%</strong> teórico)</td>
+              </tr>
+              <tr>
+                <th>Lucro Médio por Rodada (X̄)</th>
+                <td><span id="stat-lucro-medio">0,0000</span> (Esperança E[X] = <strong id="stat-ex-teo">-0,1600</strong>)</td>
+              </tr>
+              <tr>
+                <th>Retorno Observado (RTP̂)</th>
+                <td><span id="stat-rtp-obs">0,00%</span> (RTP Teórico = <strong id="stat-rtp-teo">84,00%</strong>)</td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0;">
+            <strong>Conceito-chave:</strong> Em poucas rodadas, um prêmio ocasional pode deixar seu saldo acima de 100.
+            À medida que o número de rodadas cresce (Lei dos Grandes Números), o lucro médio por rodada tende para a esperança negativa.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="sec-educacao">
+      <h2 id="sec-educacao">2. Guia de Divulgação Científica (Leitura de 3 Minutos para Público Geral)</h2>
+
+      <div class="grid-2">
+        <article class="card">
+          <h3>Mito 1: “Se o jogo é aleatório, as chances são iguais para mim e para a banca?”</h3>
+          <p>
+            <strong>Não.</strong> Sorteios independentes e honestos não significam igualdade econômica.
+            Na nossa Máquina Estatística, cada um dos 3 rolos possui 5 símbolos equiprováveis, gerando
+            <code>5 × 5 × 5 = 125</code> combinações possíveis na linha central.
+            Apenas <strong>5 combinações</strong> pagam prêmio (<code>5/125 = 4%</code> de chance por rodada), enquanto
+            <strong>120 combinações (96%)</strong> resultam em perda de 1 crédito.
+          </p>
+          <p>
+            Mesmo pagando até 50 créditos na tripla <code>E-E-E</code>, a média ponderada dos prêmios é
+            <code>(5 + 10 + 15 + 25 + 50) / 125 = 0,84</code> crédito por rodada. Como a aposta custa 1 crédito,
+            o jogador perde, em média, <strong>0,16 crédito por rodada</strong> (vantagem de 16% para o operador).
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Mito 2: “RTP de 84% significa que vou recuperar 84% do meu depósito?”</h3>
+          <p>
+            <strong>Não.</strong> O <em>Return to Player</em> (RTP = 84%) é uma razão calculada sobre o
+            <strong>volume total apostado</strong> ao longo de milhares de giros (incluindo créditos ganhos e reapostados),
+            e não uma devolução garantida sobre o depósito inicial de cada pessoa (<a href="#ref-gc">[17]</a>).
+          </p>
+          <p>
+            No nosso <strong>Experimento 3</strong> (semente 42), simulamos 100 participantes começando com 100 créditos
+            para jogar até 500 rodadas: <strong>67% perderam absolutamente tudo (saldo zero)</strong> antes do fim,
+            e a <strong>mediana do saldo final foi 0 crédito</strong>. Ainda assim, 23% saíram com saldo acima de 100
+            graças a prêmios altos ocasionais. Nas redes sociais, apenas esses 23% costumam exibir seus resultados
+            (<em>viés de visibilidade</em>), ocultando os 75% que tiveram prejuízo.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Mito 3: “Perdi 15 vezes seguidas, agora a máquina está devendo um prêmio!”</h3>
+          <p>
+            <strong>Falso (Falácia do Jogador).</strong> Quando cada rodada é sorteada de forma independente,
+            os rolos não têm memória. No <strong>Experimento 4</strong>, analisamos 9.999 pares consecutivos de rodadas:
+            a frequência de prêmio imediatamente após uma derrota foi de <strong>4,12%</strong> (395 em 9.587),
+            praticamente idêntica à frequência após uma vitória (<strong>4,13%</strong>, 17 em 412) e à probabilidade
+            teórica de <strong>4,00%</strong>. Insistir após perdas apenas aumenta a exposição acumulada.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>O que os dados reais mostram sobre saúde e orçamento familiar no Brasil?</h3>
+          <p>
+            Nossa simulação demonstra a matemática do produto, mas o impacto humano exige pesquisa empírica:
+          </p>
+          <ul>
+            <li><strong>Saúde pública:</strong> A Comissão <em>The Lancet Public Health</em> estimou <strong>15,8%</strong> (IC 95%: 10,7%–21,6%) de jogo problemático entre adultos usuários de cassinos/rolos on-line (<a href="#ref-lancet">[2]</a>). No Brasil, o <strong>LENAD III (UNIFESP, 2025)</strong> avaliou uma subamostra de 4.914 pessoas com a escala PGSI (<a href="#ref-lenad">[3]</a>).</li>
+            <li><strong>Economia e regulação:</strong> O Banco Central estimou transferências brutas via Pix de R$ 18–21 bilhões/mês em 2024 (<a href="#ref-bcb">[11]</a>); o TCU apontou R$ 17,4 bilhões de receita bruta das operadoras no 1º sem/2025 (<a href="#ref-tcu">[12]</a>); e o IEPS estimou R$ 38,8 bilhões anuais em custos sociais (<a href="#ref-ieps">[13]</a>).</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="sec-fontes">
+      <h2 id="sec-fontes">3. Fontes Verificáveis Utilizadas</h2>
+      <ol style="font-size: 0.92rem;">
+        <li id="ref-oms"><strong>OMS (2024):</strong> <em>Gambling Fact Sheet</em> — Síntese de saúde pública sobre danos financeiros e mentais.</li>
+        <li id="ref-lancet"><strong>Wardle et al. (2024):</strong> <em>The Lancet Public Health Commission on gambling</em>, v. 9, p. e950–e994.</li>
+        <li id="ref-lenad"><strong>UNIFESP / UNIAD (2025):</strong> <em>Caderno Temático LENAD III: jogos de aposta na população brasileira</em> (n = 4.914 no módulo de apostas, escala PGSI).</li>
+        <li id="ref-bcb"><strong>Banco Central do Brasil (2024):</strong> <em>Estudo Especial nº 119/2024 e Nota Técnica nº 513/2024</em> (fluxos brutos via Pix).</li>
+        <li id="ref-tcu"><strong>Tribunal de Contas da União (2026):</strong> <em>Acórdão nº 1296/2026 – Plenário</em> (receita bruta GGR e desafios de fiscalização).</li>
+        <li id="ref-ieps"><strong>Rosa et al. / IEPS (2025):</strong> <em>A saúde dos brasileiros em jogo</em> (estimativa de custos sociais e limites metodológicos, p. 33–35).</li>
+        <li id="ref-gc"><strong>UK Gambling Commission (2021):</strong> <em>Return to player: how much gaming machines payout</em>.</li>
+      </ol>
+    </section>
+  </main>
+
+  <script>
+    const ROLO = ["A", "B", "C", "D", "E"];
+    const INFO_SIMBOLO = {
+      A: { icone: "●", nome: "Círculo" },
+      B: { icone: "▲", nome: "Triângulo" },
+      C: { icone: "■", nome: "Quadrado" },
+      D: { icone: "◆", nome: "Losango" },
+      E: { icone: "★", nome: "Estrela" }
+    };
+
+    const TABELAS = {
+      base:   { A: 5,   B: 10, C: 15,   D: 25,   E: 50, ex: -0.1600, rtp: 84.00 },
+      mais10: { A: 5.5, B: 11, C: 16.5, D: 27.5, E: 55, ex: -0.0760, rtp: 92.40 },
+      baixa:  { A: 21,  B: 21, C: 21,   D: 21,   E: 21, ex: -0.1600, rtp: 84.00 },
+      alta:   { A: 2,   B: 3,  C: 5,    D: 10,   E: 85, ex: -0.1600, rtp: 84.00 }
+    };
+
+    let estado = {
+      saldo: 100.0,
+      rodadas: 0,
+      premiosCount: 0,
+      somaPremios: 0.0,
+      somaLucros: 0.0,
+      sementeEstado: 2026
+    };
+
+    function proximoInteiro5() {
+      // Gerador LCG simples para demonstração interativa no navegador
+      estado.sementeEstado = (estado.sementeEstado * 1664525 + 1013904223) >>> 0;
+      return estado.sementeEstado % 5;
+    }
+
+    function montarColuna(k) {
+      return [ROLO[k], ROLO[(k + 1) % 5], ROLO[(k + 2) % 5]];
+    }
+
+    function renderizarCelula(id, simbolo, posTexto) {
+      const el = document.getElementById(id);
+      const info = INFO_SIMBOLO[simbolo];
+      el.innerHTML = `<span class="simbolo-icone" aria-hidden="true">${info.icone} ${simbolo}</span><span class="simbolo-nome">${info.nome} (${posTexto})</span>`;
+      el.setAttribute("aria-label", `${posTexto}: Símbolo ${simbolo} (${info.nome})`);
+    }
+
+    function girarRodadas(qtd) {
+      const chaveTab = document.getElementById("sel-tabela").value;
+      const tab = TABELAS[chaveTab];
+      let ultimaParada = [0, 2, 4];
+      let ultimaCentral = ["B", "D", "A"];
+      let ultimoPremio = 0;
+      let ultimoLucro = -1;
+
+      for (let i = 0; i < qtd; i++) {
+        const k1 = proximoInteiro5();
+        const k2 = proximoInteiro5();
+        const k3 = proximoInteiro5();
+        const c1 = montarColuna(k1);
+        const c2 = montarColuna(k2);
+        const c3 = montarColuna(k3);
+
+        ultimaParada = [k1, k2, k3];
+        ultimaCentral = [c1[1], c2[1], c3[1]];
+
+        if (ultimaCentral[0] === ultimaCentral[1] && ultimaCentral[1] === ultimaCentral[2]) {
+          ultimoPremio = tab[ultimaCentral[0]];
+          estado.premiosCount += 1;
+        } else {
+          ultimoPremio = 0.0;
+        }
+        ultimoLucro = ultimoPremio - 1.0;
+        estado.rodadas += 1;
+        estado.saldo += ultimoLucro;
+        estado.somaPremios += ultimoPremio;
+        estado.somaLucros += ultimoLucro;
+
+        if (i === qtd - 1) {
+          renderizarCelula("cel-0-0", c1[0], "Topo Rolo 1");
+          renderizarCelula("cel-0-1", c2[0], "Topo Rolo 2");
+          renderizarCelula("cel-0-2", c3[0], "Topo Rolo 3");
+          renderizarCelula("cel-1-0", c1[1], "Centro Rolo 1");
+          renderizarCelula("cel-1-1", c2[1], "Centro Rolo 2");
+          renderizarCelula("cel-1-2", c3[1], "Centro Rolo 3");
+          renderizarCelula("cel-2-0", c1[2], "Base Rolo 1");
+          renderizarCelula("cel-2-1", c2[2], "Base Rolo 2");
+          renderizarCelula("cel-2-2", c3[2], "Base Rolo 3");
+        }
+      }
+
+      atualizarPainel(ultimaParada, ultimaCentral, ultimoPremio, ultimoLucro);
+    }
+
+    function atualizarPainel(paradas, central, premio, lucro) {
+      document.getElementById("stat-saldo").textContent = estado.saldo.toFixed(2).replace(".", ",");
+      document.getElementById("stat-n").textContent = estado.rodadas;
+      document.getElementById("stat-premios").textContent = estado.premiosCount;
+
+      const freqPct = estado.rodadas > 0 ? (estado.premiosCount / estado.rodadas) * 100 : 0;
+      const lucroMed = estado.rodadas > 0 ? estado.somaLucros / estado.rodadas : 0;
+      const rtpObs = estado.rodadas > 0 ? (estado.somaPremios / estado.rodadas) * 100 : 0;
+
+      document.getElementById("stat-freq-premio").textContent = freqPct.toFixed(2).replace(".", ",") + "%";
+      document.getElementById("stat-lucro-medio").textContent = (lucroMed >= 0 ? "+" : "") + lucroMed.toFixed(4).replace(".", ",");
+      document.getElementById("stat-rtp-obs").textContent = rtpObs.toFixed(2).replace(".", ",") + "%";
+
+      const msgEvento = premio > 0 ? `TRIPLA PREMIADA (${central.join("-")})!` : `Sem prêmio (${central.join("-")})`;
+      document.getElementById("status-rodada").textContent =
+        `Rodada #${estado.rodadas} (Paradas K = ${paradas.join(", ")}): ${msgEvento} | Prêmio P = ${premio.toFixed(2).replace(".", ",")} | Lucro líquido X = ${(lucro >= 0 ? "+" : "") + lucro.toFixed(2).replace(".", ",")} crédito(s).`;
+    }
+
+    function atualizarTabela() {
+      const chaveTab = document.getElementById("sel-tabela").value;
+      const tab = TABELAS[chaveTab];
+      document.getElementById("stat-ex-teo").textContent = tab.ex.toFixed(4).replace(".", ",");
+      document.getElementById("stat-rtp-teo").textContent = tab.rtp.toFixed(2).replace(".", ",") + "%";
+      reiniciarSessao();
+    }
+
+    function reiniciarSessao() {
+      estado = { saldo: 100.0, rodadas: 0, premiosCount: 0, somaPremios: 0.0, somaLucros: 0.0, sementeEstado: 2026 };
+      document.getElementById("stat-saldo").textContent = "100,00";
+      document.getElementById("stat-n").textContent = "0";
+      document.getElementById("stat-premios").textContent = "0";
+      document.getElementById("stat-freq-premio").textContent = "0,00%";
+      document.getElementById("stat-lucro-medio").textContent = "0,0000";
+      document.getElementById("stat-rtp-obs").textContent = "0,00%";
+      document.getElementById("status-rodada").textContent = "Sessão reiniciada com saldo fictício de 100,00 créditos.";
+    }
+
+    function alternarContraste() {
+      const ativo = document.body.classList.toggle("alto-contraste");
+      const btn = document.getElementById("btn-contraste");
+      btn.setAttribute("aria-pressed", ativo ? "true" : "false");
+    }
+
+    document.addEventListener("keydown", function(ev) {
+      if (ev.altKey && ev.key.toLowerCase() === "c") {
+        ev.preventDefault();
+        alternarContraste();
+      }
+    });
+  </script>
+</body>
+</html>

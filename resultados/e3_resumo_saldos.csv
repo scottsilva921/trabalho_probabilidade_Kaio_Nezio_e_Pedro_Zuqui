@@ -1,0 +1,2 @@
+semente,n_participantes,saldo_inicial,max_rodadas,prop_ganho_pct,prop_empate_pct,prop_perda_pct,soma_categorias_pct,prop_esgotamento_pct,media_saldo_final,mediana_saldo_final,dp_saldo_final,min_saldo_final,max_saldo_final,media_rodadas_jogadas,mediana_rodadas_jogadas
+42,100,100.0,500,23.0,2.0,75.0,100.0,67.0,52.1,0.0,93.5068,0.0,390.0,339.9,340.0

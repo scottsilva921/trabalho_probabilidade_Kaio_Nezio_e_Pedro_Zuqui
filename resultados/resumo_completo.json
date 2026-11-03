@@ -1,0 +1,629 @@
+{
+  "metadados_ambiente": {
+    "aviso": "Simulador acadêmico - somente créditos fictícios",
+    "python_version": "3.12.7 (tags/v3.12.7:0b05ead, Oct  1 2024, 03:06:41) [MSC v.1941 64 bit (AMD64)]",
+    "python_implementation": "CPython",
+    "sistema_operacional": "Windows 11 (10.0.26200)",
+    "arquitetura": "AMD64",
+    "biblioteca_gerador": "Módulo padrão Python `random` (classe `random.Random`, algoritmo Mersenne Twister MT19937 de período 2^19937 - 1)",
+    "metodo_sorteio": "random.Random(semente).randrange(5) -> inteiros uniformes {0, 1, 2, 3, 4}"
+  },
+  "rodada_exemplo_semente_2026": {
+    "indice": 1,
+    "paradas": [
+      0,
+      2,
+      4
+    ],
+    "tabuleiro": [
+      [
+        "A",
+        "C",
+        "E"
+      ],
+      [
+        "B",
+        "D",
+        "A"
+      ],
+      [
+        "C",
+        "E",
+        "B"
+      ]
+    ],
+    "linha_central": [
+      "B",
+      "D",
+      "A"
+    ],
+    "evento": "Qualquer outra tripla",
+    "premio": 0.0,
+    "lucro": -1.0
+  },
+  "experimento_1": {
+    "n_rodadas": 10000,
+    "semente": 2026,
+    "soma_contagens": 10000,
+    "n_premiadas_obs": 412,
+    "prop_premiadas": 0.0412,
+    "prop_premiadas_pct": 4.12,
+    "soma_premios": 8685.0,
+    "soma_lucros": -1315.0,
+    "lucro_medio": -0.1315,
+    "rtp_observado": 0.8685,
+    "rtp_observado_pct": 86.85000000000001,
+    "dp_amostral_s": 5.275034630126602,
+    "teorico": {
+      "total_triplas": 125.0,
+      "n_premiadas": 5.0,
+      "prob_premio": 0.04,
+      "prob_sem_premio": 0.96,
+      "esperanca_p": 0.8400000000000001,
+      "esperanca_x": -0.15999999999999992,
+      "rtp_teorico": 0.8400000000000001,
+      "rtp_teorico_pct": 84.00000000000001,
+      "vantagem_casa_pct": 15.999999999999993,
+      "variancia_x": 27.094400000000004,
+      "dp_teorico_x": 5.2052281410136105
+    },
+    "tabela": [
+      {
+        "linha_central": "A-A-A",
+        "premio_P": 5.0,
+        "lucro_X": 4.0,
+        "prob_teorica": 0.008,
+        "prob_teorica_pct": 0.8,
+        "esperado_N": 80.0,
+        "contagem_observada": 77,
+        "freq_relativa": 0.0077,
+        "freq_relativa_pct": 0.77,
+        "diferenca_pct": -0.029999999999999992
+      },
+      {
+        "linha_central": "B-B-B",
+        "premio_P": 10.0,
+        "lucro_X": 9.0,
+        "prob_teorica": 0.008,
+        "prob_teorica_pct": 0.8,
+        "esperado_N": 80.0,
+        "contagem_observada": 88,
+        "freq_relativa": 0.0088,
+        "freq_relativa_pct": 0.88,
+        "diferenca_pct": 0.08000000000000004
+      },
+      {
+        "linha_central": "C-C-C",
+        "premio_P": 15.0,
+        "lucro_X": 14.0,
+        "prob_teorica": 0.008,
+        "prob_teorica_pct": 0.8,
+        "esperado_N": 80.0,
+        "contagem_observada": 78,
+        "freq_relativa": 0.0078,
+        "freq_relativa_pct": 0.7799999999999999,
+        "diferenca_pct": -0.020000000000000052
+      },
+      {
+        "linha_central": "D-D-D",
+        "premio_P": 25.0,
+        "lucro_X": 24.0,
+        "prob_teorica": 0.008,
+        "prob_teorica_pct": 0.8,
+        "esperado_N": 80.0,
+        "contagem_observada": 88,
+        "freq_relativa": 0.0088,
+        "freq_relativa_pct": 0.88,
+        "diferenca_pct": 0.08000000000000004
+      },
+      {
+        "linha_central": "E-E-E",
+        "premio_P": 50.0,
+        "lucro_X": 49.0,
+        "prob_teorica": 0.008,
+        "prob_teorica_pct": 0.8,
+        "esperado_N": 80.0,
+        "contagem_observada": 81,
+        "freq_relativa": 0.0081,
+        "freq_relativa_pct": 0.8099999999999999,
+        "diferenca_pct": 0.00999999999999994
+      },
+      {
+        "linha_central": "Qualquer outra tripla",
+        "premio_P": 0.0,
+        "lucro_X": -1.0,
+        "prob_teorica": 0.96,
+        "prob_teorica_pct": 96.0,
+        "esperado_N": 9600.0,
+        "contagem_observada": 9588,
+        "freq_relativa": 0.9588,
+        "freq_relativa_pct": 95.88,
+        "diferenca_pct": -0.11999999999999789
+      }
+    ]
+  },
+  "experimento_2": {
+    "sementes": [
+      10,
+      2026,
+      123456
+    ],
+    "marcos": [
+      100,
+      1000,
+      10000
+    ],
+    "tabela_3x3": [
+      {
+        "semente": 10,
+        "media_100": -0.7,
+        "media_1000": -0.055,
+        "media_10000": -0.096
+      },
+      {
+        "semente": 2026,
+        "media_100": 0.2,
+        "media_1000": -0.22,
+        "media_10000": -0.1315
+      },
+      {
+        "semente": 123456,
+        "media_100": 0.2,
+        "media_1000": -0.07,
+        "media_10000": -0.2215
+      }
+    ],
+    "dez_primeiros_reproduzidos": true,
+    "comparacao_10_primeiros": [
+      {
+        "rodada": 1,
+        "paradas_exec1": "(0, 2, 4)",
+        "central_exec1": "B-D-A",
+        "lucro_exec1": -1.0,
+        "paradas_exec2": "(0, 2, 4)",
+        "central_exec2": "B-D-A",
+        "lucro_exec2": -1.0,
+        "reproduzido": true
+      },
+      {
+        "rodada": 2,
+        "paradas_exec1": "(4, 0, 1)",
+        "central_exec1": "A-B-C",
+        "lucro_exec1": -1.0,
+        "paradas_exec2": "(4, 0, 1)",
+        "central_exec2": "A-B-C",
+        "lucro_exec2": -1.0,
+        "reproduzido": true
+      },
+      {
+        "rodada": 3,
+        "paradas_exec1": "(4, 4, 4)",
+        "central_exec1": "A-A-A",
+        "lucro_exec1": 4.0,
+        "paradas_exec2": "(4, 4, 4)",
+        "central_exec2": "A-A-A",
+        "lucro_exec2": 4.0,
+        "reproduzido": true
+      },
+      {
+        "rodada": 4,
+        "paradas_exec1": "(3, 4, 4)",
+        "central_exec1": "E-A-A",
+        "lucro_exec1": -1.0,
+        "paradas_exec2": "(3, 4, 4)",
+        "central_exec2": "E-A-A",
+        "lucro_exec2": -1.0,
+        "reproduzido": true
+      },
+      {
+        "rodada": 5,
+        "paradas_exec1": "(3, 4, 3)",
+        "central_exec1": "E-A-E",
+        "lucro_exec1": -1.0,
+        "paradas_exec2": "(3, 4, 3)",
+        "central_exec2": "E-A-E",
+        "lucro_exec2": -1.0,
+        "reproduzido": true
+      },
+      {
+        "rodada": 6,
+        "paradas_exec1": "(1, 0, 4)",
+        "central_exec1": "C-B-A",
+        "lucro_exec1": -1.0,
+        "paradas_exec2": "(1, 0, 4)",
+        "central_exec2": "C-B-A",
+        "lucro_exec2": -1.0,
+        "reproduzido": true
+      },
+      {
+        "rodada": 7,
+        "paradas_exec1": "(0, 0, 2)",
+        "central_exec1": "B-B-D",
+        "lucro_exec1": -1.0,
+        "paradas_exec2": "(0, 0, 2)",
+        "central_exec2": "B-B-D",
+        "lucro_exec2": -1.0,
+        "reproduzido": true
+      },
+      {
+        "rodada": 8,
+        "paradas_exec1": "(0, 3, 0)",
+        "central_exec1": "B-E-B",
+        "lucro_exec1": -1.0,
+        "paradas_exec2": "(0, 3, 0)",
+        "central_exec2": "B-E-B",
+        "lucro_exec2": -1.0,
+        "reproduzido": true
+      },
+      {
+        "rodada": 9,
+        "paradas_exec1": "(3, 2, 1)",
+        "central_exec1": "E-D-C",
+        "lucro_exec1": -1.0,
+        "paradas_exec2": "(3, 2, 1)",
+        "central_exec2": "E-D-C",
+        "lucro_exec2": -1.0,
+        "reproduzido": true
+      },
+      {
+        "rodada": 10,
+        "paradas_exec1": "(3, 2, 2)",
+        "central_exec1": "E-D-D",
+        "lucro_exec1": -1.0,
+        "paradas_exec2": "(3, 2, 2)",
+        "central_exec2": "E-D-D",
+        "lucro_exec2": -1.0,
+        "reproduzido": true
+      }
+    ]
+  },
+  "experimento_3": {
+    "n_participantes": 100,
+    "saldo_inicial": 100.0,
+    "max_rodadas": 500,
+    "semente": 42,
+    "n_ganho": 23,
+    "prop_ganho_pct": 23.0,
+    "n_empate": 2,
+    "prop_empate_pct": 2.0,
+    "n_perda": 75,
+    "prop_perda_pct": 75.0,
+    "n_esgotamento": 67,
+    "prop_esgotamento_pct": 67.0,
+    "prop_esgotamento_entre_perdas_pct": 89.33333333333333,
+    "media_saldo_final": 52.1,
+    "mediana_saldo_final": 0.0,
+    "dp_saldo_final": 93.50681928354345,
+    "min_saldo_final": 0.0,
+    "max_saldo_final": 390.0,
+    "media_rodadas": 339.9,
+    "mediana_rodadas": 340.0
+  },
+  "experimento_4": {
+    "total_pares": 9999,
+    "pares_apos_premio": 412,
+    "premios_apos_premio": 17,
+    "prop_apos_premio": 0.0412621359223301,
+    "pares_apos_perda": 9587,
+    "premios_apos_perda": 395,
+    "prop_apos_perda": 0.041201627203504745,
+    "tabela": [
+      {
+        "resultado_anterior": "Com prêmio (G_i: P_i > 0)",
+        "total_pares": 412,
+        "premios_seguinte": 17,
+        "proporcao_observada": 0.0412621359223301,
+        "proporcao_observada_str": "4.1262%",
+        "referencia_teorica_pct": 4.0
+      },
+      {
+        "resultado_anterior": "Sem prêmio (G_i^c: P_i = 0)",
+        "total_pares": 9587,
+        "premios_seguinte": 395,
+        "proporcao_observada": 0.041201627203504745,
+        "proporcao_observada_str": "4.1202%",
+        "referencia_teorica_pct": 4.0
+      },
+      {
+        "resultado_anterior": "Total de pares consecutivos",
+        "total_pares": 9999,
+        "premios_seguinte": 412,
+        "proporcao_observada": 0.041204120412041204,
+        "proporcao_observada_str": "4.1204%",
+        "referencia_teorica_pct": 4.0
+      }
+    ]
+  },
+  "experimento_5": {
+    "n_rodadas": 10000,
+    "tabela_comparativa": [
+      {
+        "configuracao": "Tabela Base",
+        "prob_premio_teorica_pct": 4.0,
+        "freq_premio_obs_pct": 4.12,
+        "premio_medio_teorico": 0.8400000000000001,
+        "premio_medio_obs": 0.8685,
+        "lucro_medio_teorico": -0.15999999999999992,
+        "lucro_medio_obs": -0.1315,
+        "rtp_teorico_pct": 84.00000000000001,
+        "rtp_obs_pct": 86.85000000000001,
+        "dp_teorico_x": 5.2052281410136105,
+        "dp_obs_x": 5.275034630126602
+      },
+      {
+        "configuracao": "Prêmios +10%",
+        "prob_premio_teorica_pct": 4.0,
+        "freq_premio_obs_pct": 4.12,
+        "premio_medio_teorico": 0.924,
+        "premio_medio_obs": 0.95535,
+        "lucro_medio_teorico": -0.07599999999999996,
+        "lucro_medio_obs": -0.04465,
+        "rtp_teorico_pct": 92.4,
+        "rtp_obs_pct": 95.535,
+        "dp_teorico_x": 5.725750955114971,
+        "dp_obs_x": 5.802538093139263
+      }
+    ],
+    "teo_base": {
+      "total_triplas": 125.0,
+      "n_premiadas": 5.0,
+      "prob_premio": 0.04,
+      "prob_sem_premio": 0.96,
+      "esperanca_p": 0.8400000000000001,
+      "esperanca_x": -0.15999999999999992,
+      "rtp_teorico": 0.8400000000000001,
+      "rtp_teorico_pct": 84.00000000000001,
+      "vantagem_casa_pct": 15.999999999999993,
+      "variancia_x": 27.094400000000004,
+      "dp_teorico_x": 5.2052281410136105
+    },
+    "teo_10": {
+      "total_triplas": 125.0,
+      "n_premiadas": 5.0,
+      "prob_premio": 0.04,
+      "prob_sem_premio": 0.96,
+      "esperanca_p": 0.924,
+      "esperanca_x": -0.07599999999999996,
+      "rtp_teorico": 0.924,
+      "rtp_teorico_pct": 92.4,
+      "vantagem_casa_pct": 7.599999999999996,
+      "variancia_x": 32.784224,
+      "dp_teorico_x": 5.725750955114971
+    }
+  },
+  "extra_1_intervalos_confianca": {
+    "e1_media": -0.1315,
+    "e1_dp": 5.275034630126602,
+    "e1_erro_padrao": 0.05275034630126602,
+    "e1_ic95_lucro": [
+      -0.23488877892249704,
+      -0.028111221077502954
+    ],
+    "e1_ic95_rtp_pct": [
+      76.5111221077503,
+      97.1888778922497
+    ],
+    "m_execucoes": 100,
+    "n_por_execucao": 10000,
+    "media_das_medias": -0.15836,
+    "dp_das_medias": 0.04700247575684421,
+    "ep_teorico_esperado": 0.052052281410136104,
+    "ic95_meta_lucro": [
+      -0.16768631091596062,
+      -0.14903368908403938
+    ],
+    "ic95_meta_rtp_pct": [
+      83.23136890840394,
+      85.09663109159607
+    ],
+    "taxa_cobertura_pct": 97.0
+  },
+  "extra_2_mesma_media_riscos_diferentes": {
+    "comparacao": [
+      {
+        "perfil": "Baixa Volatilidade (21 fixo)",
+        "pagamentos": "21-21-21-21-21",
+        "esperanca_p_teorica": 0.8400000000000001,
+        "esperanca_x_teorica": -0.15999999999999992,
+        "rtp_teorico_pct": 84.00000000000001,
+        "dp_teorico_x": 4.1151427678757395,
+        "lucro_medio_obs_e1": -0.1348,
+        "rtp_obs_e1_pct": 86.52,
+        "dp_obs_e1": 4.17401140356848,
+        "e3_media_saldo": 44.15,
+        "e3_mediana_saldo": 0.0,
+        "e3_dp_saldo": 73.41336885930741,
+        "e3_ganhadores_pct": 23.0,
+        "e3_esgotamento_pct": 63.0,
+        "e3_max_saldo": 356.0
+      },
+      {
+        "perfil": "Tabela Base (5 a 50)",
+        "pagamentos": "5-10-15-25-50",
+        "esperanca_p_teorica": 0.8400000000000001,
+        "esperanca_x_teorica": -0.15999999999999992,
+        "rtp_teorico_pct": 84.00000000000001,
+        "dp_teorico_x": 5.2052281410136105,
+        "lucro_medio_obs_e1": -0.1315,
+        "rtp_obs_e1_pct": 86.85000000000001,
+        "dp_obs_e1": 5.275034630126602,
+        "e3_media_saldo": 52.1,
+        "e3_mediana_saldo": 0.0,
+        "e3_dp_saldo": 93.50681928354345,
+        "e3_ganhadores_pct": 23.0,
+        "e3_esgotamento_pct": 67.0,
+        "e3_max_saldo": 390.0
+      },
+      {
+        "perfil": "Alta Volatilidade (2 a 85)",
+        "pagamentos": "2-3-5-10-85",
+        "esperanca_p_teorica": 0.8400000000000001,
+        "esperanca_x_teorica": -0.15999999999999992,
+        "rtp_teorico_pct": 84.00000000000001,
+        "dp_teorico_x": 7.628787583882514,
+        "lucro_medio_obs_e1": -0.1427,
+        "rtp_obs_e1_pct": 85.72999999999999,
+        "dp_obs_e1": 7.679741828567894,
+        "e3_media_saldo": 78.08,
+        "e3_mediana_saldo": 0.0,
+        "e3_dp_saldo": 136.28592048048148,
+        "e3_ganhadores_pct": 26.0,
+        "e3_esgotamento_pct": 67.0,
+        "e3_max_saldo": 599.0
+      }
+    ]
+  },
+  "extra_3_limites_exposicao": {
+    "resumo_regras": [
+      {
+        "regra": "Regra A: Padrão E3 (até 500 rodadas ou falência B=0)",
+        "media_rodadas": 339.9,
+        "mediana_rodadas": 340.0,
+        "media_saldo_final": 52.1,
+        "mediana_saldo_final": 0.0,
+        "dp_saldo_final": 93.50681928354345,
+        "perda_media_sessao": 47.9,
+        "lucro_medio_por_rodada_efetiva": -0.1409238011179759,
+        "wald_teorico_saldo": 45.616,
+        "prop_ganho_pct": 23.0,
+        "prop_perda_pct": 75.0,
+        "prop_esgotamento_total_pct": 67.0
+      },
+      {
+        "regra": "Regra B: Limite Prudencial (Stop-Loss B<=70, Stop-Gain B>=120, máx 200 rodadas)",
+        "media_rodadas": 31.32,
+        "mediana_rodadas": 30.0,
+        "media_saldo_final": 101.13,
+        "mediana_saldo_final": 70.0,
+        "dp_saldo_final": 33.38107338906376,
+        "perda_media_sessao": -1.1299999999999955,
+        "lucro_medio_por_rodada_efetiva": 0.03607918263090662,
+        "wald_teorico_saldo": 94.9888,
+        "prop_ganho_pct": 48.0,
+        "prop_perda_pct": 52.0,
+        "prop_esgotamento_total_pct": 0.0
+      },
+      {
+        "regra": "Regra C: Exposição Curta (Stop-Loss B<=85, máx 50 rodadas)",
+        "media_rodadas": 28.6,
+        "mediana_rodadas": 20.0,
+        "media_saldo_final": 101.05,
+        "mediana_saldo_final": 85.0,
+        "dp_saldo_final": 29.3816320688675,
+        "perda_media_sessao": -1.0499999999999972,
+        "lucro_medio_por_rodada_efetiva": 0.036713286713286615,
+        "wald_teorico_saldo": 95.424,
+        "prop_ganho_pct": 24.0,
+        "prop_perda_pct": 69.0,
+        "prop_esgotamento_total_pct": 0.0
+      }
+    ]
+  },
+  "extra_8_analise_sensibilidade": [
+    {
+      "cenario": "Cenário 1: Prêmios -20% (RTP 67,2%)",
+      "fator_pagamento": 0.8,
+      "n_simbolos_rolo": 5,
+      "espaco_amostral": 125,
+      "prob_premio_pct": 4.0,
+      "soma_pagamentos": 84.0,
+      "esperanca_p": 0.672,
+      "esperanca_x": -0.32799999999999996,
+      "rtp_teorico_pct": 67.2,
+      "vantagem_casa_pct": 32.8,
+      "dp_teorico_x": 4.164182512810888,
+      "lucro_medio_obs": -0.3052,
+      "rtp_obs_pct": 69.48
+    },
+    {
+      "cenario": "Cenário 2: Modelo-Base (RTP 84,0%)",
+      "fator_pagamento": 1.0,
+      "n_simbolos_rolo": 5,
+      "espaco_amostral": 125,
+      "prob_premio_pct": 4.0,
+      "soma_pagamentos": 105.0,
+      "esperanca_p": 0.8400000000000001,
+      "esperanca_x": -0.15999999999999992,
+      "rtp_teorico_pct": 84.00000000000001,
+      "vantagem_casa_pct": 15.999999999999993,
+      "dp_teorico_x": 5.2052281410136105,
+      "lucro_medio_obs": -0.1315,
+      "rtp_obs_pct": 86.85000000000001
+    },
+    {
+      "cenario": "Cenário 3: Prêmios +10% - Exp. 5 (RTP 92,4%)",
+      "fator_pagamento": 1.1,
+      "n_simbolos_rolo": 5,
+      "espaco_amostral": 125,
+      "prob_premio_pct": 4.0,
+      "soma_pagamentos": 115.50000000000001,
+      "esperanca_p": 0.924,
+      "esperanca_x": -0.07599999999999996,
+      "rtp_teorico_pct": 92.4,
+      "vantagem_casa_pct": 7.599999999999996,
+      "dp_teorico_x": 5.725750955114972,
+      "lucro_medio_obs": -0.04464999999999991,
+      "rtp_obs_pct": 95.53500000000001
+    },
+    {
+      "cenario": "Cenário 4: Prêmios +15% (RTP 96,6%)",
+      "fator_pagamento": 1.15,
+      "n_simbolos_rolo": 5,
+      "espaco_amostral": 125,
+      "prob_premio_pct": 4.0,
+      "soma_pagamentos": 120.74999999999999,
+      "esperanca_p": 0.966,
+      "esperanca_x": -0.03400000000000003,
+      "rtp_teorico_pct": 96.6,
+      "vantagem_casa_pct": 3.400000000000003,
+      "dp_teorico_x": 5.986012362165651,
+      "lucro_medio_obs": -0.0012250000000000889,
+      "rtp_obs_pct": 99.87749999999998
+    },
+    {
+      "cenario": "Cenário 5: Equilíbrio / Break-Even (+19,05%, RTP 100,0%)",
+      "fator_pagamento": 1.190476,
+      "n_simbolos_rolo": 5,
+      "espaco_amostral": 125,
+      "prob_premio_pct": 4.0,
+      "soma_pagamentos": 125.0,
+      "esperanca_p": 1.0,
+      "esperanca_x": 0.0,
+      "rtp_teorico_pct": 100.0,
+      "vantagem_casa_pct": 0.0,
+      "dp_teorico_x": 6.196700167873345,
+      "lucro_medio_obs": 0.03392857142857146,
+      "rtp_obs_pct": 103.39285714285715
+    },
+    {
+      "cenario": "Cenário 6: Favorável ao Jogador (+25%, RTP 105,0%)",
+      "fator_pagamento": 1.25,
+      "n_simbolos_rolo": 5,
+      "espaco_amostral": 125,
+      "prob_premio_pct": 4.0,
+      "soma_pagamentos": 131.25,
+      "esperanca_p": 1.05,
+      "esperanca_x": 0.050000000000000044,
+      "rtp_teorico_pct": 105.0,
+      "vantagem_casa_pct": -5.000000000000004,
+      "dp_teorico_x": 6.506535176267012,
+      "lucro_medio_obs": 0.085625,
+      "rtp_obs_pct": 108.5625
+    },
+    {
+      "cenario": "Cenário 7: Expansão para 6 símbolos no rolo (Base, RTP 48,6%)",
+      "fator_pagamento": 1.0,
+      "n_simbolos_rolo": 6,
+      "espaco_amostral": 216,
+      "prob_premio_pct": 2.314814814814815,
+      "soma_pagamentos": 105.0,
+      "esperanca_p": 0.48611111111111105,
+      "esperanca_x": -0.513888888888889,
+      "rtp_teorico_pct": 48.61111111111111,
+      "vantagem_casa_pct": 51.38888888888889,
+      "dp_teorico_x": 3.9814141897844895,
+      "lucro_medio_obs": -0.4555,
+      "rtp_obs_pct": 54.449999999999996
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+n_rodadas,semente,soma_contagens,rodadas_premiadas,proporcao_premiadas_pct,lucro_medio_observado,esperanca_lucro_teorica,rtp_observado_pct,rtp_teorico_pct,desvio_padrao_amostral_s,desvio_padrao_teorico_sigma
+10000,2026,10000,412,4.12,-0.1315,-0.16,86.85,84.0,5.275035,5.205228

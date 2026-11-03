@@ -1,0 +1,4 @@
+regra,media_rodadas,mediana_rodadas,media_saldo_final,mediana_saldo_final,dp_saldo_final,perda_media_sessao,lucro_medio_por_rodada_efetiva,wald_teorico_saldo,prop_ganho_pct,prop_perda_pct,prop_esgotamento_total_pct
+Regra A: Padrão E3 (até 500 rodadas ou falência B=0),339.9,340.0,52.1,0.0,93.50681928354345,47.9,-0.1409238011179759,45.616,23.0,75.0,67.0
+"Regra B: Limite Prudencial (Stop-Loss B<=70, Stop-Gain B>=120, máx 200 rodadas)",31.32,30.0,101.13,70.0,33.38107338906376,-1.1299999999999955,0.03607918263090662,94.9888,48.0,52.0,0.0
+"Regra C: Exposição Curta (Stop-Loss B<=85, máx 50 rodadas)",28.6,20.0,101.05,85.0,29.3816320688675,-1.0499999999999972,0.036713286713286615,95.424,24.0,69.0,0.0

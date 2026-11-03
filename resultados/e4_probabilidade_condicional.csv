@@ -1,0 +1,4 @@
+resultado_anterior,total_pares,premios_seguinte,proporcao_observada,proporcao_observada_str,referencia_teorica_pct
+Com prêmio (G_i: P_i > 0),412,17,0.0412621359223301,4.1262%,4.0
+Sem prêmio (G_i^c: P_i = 0),9587,395,0.041201627203504745,4.1202%,4.0
+Total de pares consecutivos,9999,412,0.041204120412041204,4.1204%,4.0
